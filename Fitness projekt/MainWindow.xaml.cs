@@ -20,5 +20,33 @@ namespace Fitness_projekt
         {
             InitializeComponent();
         }
+        class Medlem
+        {
+            public string navn;
+        }
+        class Administrator
+        {
+
+        }
+        class Aktivitet
+        {
+
+        }
+        class Medlemskab
+        {
+            
+        }
+        class Aktivitetsliste
+        {
+
+        }
+        class Medlemsliste
+        {
+
+        }
+        class Deltagerliste
+        {
+
+        }
     }
 }
