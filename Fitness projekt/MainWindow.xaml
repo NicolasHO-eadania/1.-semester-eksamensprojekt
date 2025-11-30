@@ -7,7 +7,23 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}"/>
-
+        <TabControl>
+            <TabItem x:Name="AktiviteterTabAdmin" Header="Aktiviteter">
+                <Grid Background="#FFE5E5E5">
+                    <Canvas Width="794">
+                        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Width="377" Height="356" Canvas.Left="10" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Button Content="Button" Width="377" Height="30" HorizontalAlignment="Left" Canvas.Top="366" VerticalAlignment="Center" Canvas.Left="10"/>
+                        <Button Content="Button" Height="30" Width="188" HorizontalAlignment="Left" Canvas.Left="596" Canvas.Top="366" VerticalAlignment="Center"/>
+                        <Button Content="Button" Height="30" Width="189" HorizontalAlignment="Left" Canvas.Left="407" Canvas.Top="366" VerticalAlignment="Center"/>
+                        <TextBox TextWrapping="Wrap" Text="TextBox" Width="377" HorizontalAlignment="Center" Height="330" Canvas.Left="407" Canvas.Top="36" VerticalAlignment="Top"/>
+                        <TextBox Height="26" TextWrapping="Wrap" Text="TextBox" Width="257" HorizontalAlignment="Left" Canvas.Left="407" VerticalAlignment="Center" Canvas.Top="10"/>
+                        <DatePicker HorizontalAlignment="Left" Canvas.Left="664" VerticalAlignment="Top" Height="26" Width="120" Canvas.Top="10"/>
+                    </Canvas>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="MedlemmerTabAdmin" Header="Medlemmer">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
