@@ -18,11 +18,13 @@ namespace Fitness_projekt
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Aktivitetsliste aktivitetsliste = new Aktivitetsliste();
+        public Medlemsliste medlemsliste = new Medlemsliste();
         public MainWindow()
         {
             InitializeComponent();
         }
-        class Medlem
+        public class Medlem
         {
             public string navn;
             public int alder;
@@ -30,33 +32,61 @@ namespace Fitness_projekt
             public string adgangsKode;
             public Medlemskab medlemskab;
         }
-        class Administrator
+        public class Administrator
         {
             public string brugerNavn;
             public string adgangsKode;
         }
-        class Aktivitet
+        public class Aktivitet
         {
             public string titel;
             public string beskrivelse;
             public string dato;
             public Deltagerliste deltagere;
+
+            public Aktivitet(string titel, string beskrivelse, string dato)
+            {
+                deltagere = new Deltagerliste();
+                this.titel = titel;
+                this.beskrivelse = beskrivelse;
+                this.dato = dato;
+            }
         }
-        class Medlemskab
+        public class Medlemskab
         {
             public bool erMedlem;
         }
-        class Aktivitetsliste
+        public class Aktivitetsliste
         {
             public List<Aktivitet> liste = new List<Aktivitet>();
         }
-        class Medlemsliste
+        public class Medlemsliste
         {
             public List<Medlem> liste = new List<Medlem>();
         }
-        class Deltagerliste
+        public class Deltagerliste
         {
             public List<Medlem> liste = new List<Medlem>();
+        }
+
+        private void NyAktivitetButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AktiviteterListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void RedigerAktivitetButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GemAktivitetButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

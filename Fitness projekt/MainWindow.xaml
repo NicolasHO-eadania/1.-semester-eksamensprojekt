@@ -10,14 +10,14 @@
         <TabControl>
             <TabItem x:Name="AktiviteterTabAdmin" Header="Aktiviteter">
                 <Grid Background="#FFE5E5E5">
-                    <Canvas Width="794" HorizontalAlignment="Left" VerticalAlignment="Top">
-                        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Width="382" Height="356" Canvas.Left="10" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Button Content="Button" Width="382" Height="30" HorizontalAlignment="Left" Canvas.Top="366" VerticalAlignment="Center" Canvas.Left="10"/>
-                        <Button Content="Button" Height="30" Width="191" HorizontalAlignment="Left" Canvas.Left="593" Canvas.Top="366" VerticalAlignment="Center"/>
-                        <Button Content="Button" Height="30" Width="191" HorizontalAlignment="Left" Canvas.Left="402" Canvas.Top="366" VerticalAlignment="Center"/>
-                        <TextBox TextWrapping="Wrap" Text="TextBox" Width="382" HorizontalAlignment="Left" Height="330" Canvas.Left="402" Canvas.Top="36" VerticalAlignment="Center"/>
-                        <TextBox Height="26" TextWrapping="Wrap" Text="TextBox" Width="262" HorizontalAlignment="Left" Canvas.Left="402" VerticalAlignment="Center" Canvas.Top="10"/>
-                        <DatePicker HorizontalAlignment="Left" Canvas.Left="664" VerticalAlignment="Top" Height="26" Width="120" Canvas.Top="10"/>
+                    <Canvas x:Name="AktiviteterCanvas" Width="794" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <ListBox x:Name="AktiviteterListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Width="382" Height="356" Canvas.Left="10" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center" SelectionChanged="AktiviteterListBox_SelectionChanged"/>
+                        <Button x:Name="NyAktivitetButton" Content="Button" Width="382" Height="30" HorizontalAlignment="Left" Canvas.Top="366" VerticalAlignment="Center" Canvas.Left="10" Click="NyAktivitetButton_Click"/>
+                        <Button x:Name="GemAktivitetButton" Content="Button" Height="30" Width="191" HorizontalAlignment="Left" Canvas.Left="593" Canvas.Top="366" VerticalAlignment="Center" Click="GemAktivitetButton_Click"/>
+                        <Button x:Name="RedigerAktivitetButton" Content="Button" Height="30" Width="191" HorizontalAlignment="Left" Canvas.Left="402" Canvas.Top="366" VerticalAlignment="Center" Click="RedigerAktivitetButton_Click"/>
+                        <TextBox x:Name="BeskrivelseTextBox" TextWrapping="Wrap" Text="TextBox" Width="382" HorizontalAlignment="Left" Height="330" Canvas.Left="402" Canvas.Top="36" VerticalAlignment="Center"/>
+                        <TextBox x:Name="AktivitetTitelTextBox" Height="26" TextWrapping="Wrap" Text="TextBox" Width="262" HorizontalAlignment="Left" Canvas.Left="402" VerticalAlignment="Center" Canvas.Top="10"/>
+                        <DatePicker x:Name="AktivitetDatoDatePicker" HorizontalAlignment="Left" Canvas.Left="664" VerticalAlignment="Top" Height="26" Width="120" Canvas.Top="10"/>
                     </Canvas>
                 </Grid>
             </TabItem>
