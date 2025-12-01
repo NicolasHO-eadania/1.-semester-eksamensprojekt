@@ -25,35 +25,38 @@ namespace Fitness_projekt
         class Medlem
         {
             public string navn;
+            public int alder;
+            public string brugerNavn;
+            public string adgangsKode;
+            public Medlemskab medlemskab;
         }
         class Administrator
         {
-
+            public string brugerNavn;
+            public string adgangsKode;
         }
         class Aktivitet
         {
-
+            public string titel;
+            public string beskrivelse;
+            public string dato;
+            public Deltagerliste deltagere;
         }
         class Medlemskab
         {
-            
+            public bool erMedlem;
         }
         class Aktivitetsliste
         {
-
+            public List<Aktivitet> liste = new List<Aktivitet>();
         }
         class Medlemsliste
         {
-
+            public List<Medlem> liste = new List<Medlem>();
         }
         class Deltagerliste
         {
-
-        }
-
-        private void GridSplitter_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
-        {
-
+            public List<Medlem> liste = new List<Medlem>();
         }
     }
 }
