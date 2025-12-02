@@ -84,6 +84,7 @@ namespace Fitness_projekt
 
         private void AktiviteterListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             AktivitetTitelTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].titel;
             AktivitetBeskrivelseTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].beskrivelse;
             AktivitetDatoDatePicker.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].dato;
@@ -106,10 +107,19 @@ namespace Fitness_projekt
 
         private void GemAktivitetButton_Click(object sender, RoutedEventArgs e)
         {
-            Aktivitet nyAktivitet = new Aktivitet(AktivitetTitelTextBox.Text, AktivitetBeskrivelseTextBox.Text, AktivitetDatoDatePicker.Text);
-            aktivitetsliste.liste.Add(nyAktivitet);
-            AktiviteterListBox.Items.Add(nyAktivitet.titel);
-
+            if(NyAktivitetButton.IsHitTestVisible == true)
+            {
+                Aktivitet nyAktivitet = new Aktivitet(AktivitetTitelTextBox.Text, AktivitetBeskrivelseTextBox.Text, AktivitetDatoDatePicker.Text);
+                aktivitetsliste.liste.Add(nyAktivitet);
+                AktiviteterListBox.Items.Add(nyAktivitet.titel);
+            }
+            else
+            {
+                aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].titel = AktivitetTitelTextBox.Text;
+                aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].beskrivelse = AktivitetBeskrivelseTextBox.Text;
+                aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].dato = AktivitetDatoDatePicker.Text;
+                AktiviteterListBox.Items[AktiviteterListBox.SelectedIndex] = AktivitetTitelTextBox.Text;
+            }
             AktivitetTitelTextBox.IsHitTestVisible = false;
             AktivitetBeskrivelseTextBox.IsHitTestVisible = false;
             AktivitetDatoDatePicker.IsHitTestVisible = false;
@@ -121,7 +131,7 @@ namespace Fitness_projekt
             GemAktivitetButton.IsHitTestVisible = false;
             AktiviteterListBox.IsHitTestVisible = true;
             NyAktivitetButton.IsHitTestVisible = true;
-       }
+        }
 
         private void AktivitetTitelTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
