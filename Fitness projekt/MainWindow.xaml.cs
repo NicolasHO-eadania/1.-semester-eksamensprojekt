@@ -20,6 +20,7 @@ namespace Fitness_projekt
     {
         public Aktivitetsliste aktivitetsliste = new Aktivitetsliste();
         public Medlemsliste medlemsliste = new Medlemsliste();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -71,7 +72,13 @@ namespace Fitness_projekt
 
         private void NyAktivitetButton_Click(object sender, RoutedEventArgs e)
         {
+            AktivitetTitelTextBox.Clear();
+            AktivitetBeskrivelseTextBox.Clear();
+            AktivitetDatoDatePicker.SelectedDate = null;
 
+            AktivitetTitelTextBox.IsHitTestVisible = true;
+            AktivitetBeskrivelseTextBox.IsHitTestVisible = true;
+            AktivitetDatoDatePicker.IsHitTestVisible = true;
         }
 
         private void AktiviteterListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -83,7 +90,9 @@ namespace Fitness_projekt
 
         private void RedigerAktivitetButton_Click(object sender, RoutedEventArgs e)
         {
-
+            AktivitetTitelTextBox.IsHitTestVisible = true;
+            AktivitetBeskrivelseTextBox.IsHitTestVisible = true;
+            AktivitetDatoDatePicker.IsHitTestVisible = true;
         }
 
         private void GemAktivitetButton_Click(object sender, RoutedEventArgs e)
@@ -91,6 +100,14 @@ namespace Fitness_projekt
             Aktivitet nyAktivitet = new Aktivitet(AktivitetTitelTextBox.Text, AktivitetBeskrivelseTextBox.Text, AktivitetDatoDatePicker.Text);
             aktivitetsliste.liste.Add(nyAktivitet);
             AktiviteterListBox.Items.Add(nyAktivitet.titel);
+
+            AktivitetTitelTextBox.IsHitTestVisible = false;
+            AktivitetBeskrivelseTextBox.IsHitTestVisible = false;
+            AktivitetDatoDatePicker.IsHitTestVisible = false;
+
+            AktivitetTitelTextBox.Clear();
+            AktivitetBeskrivelseTextBox.Clear();
+            AktivitetDatoDatePicker.SelectedDate = null;
         }
 
         private void AktivitetTitelTextBox_TextChanged(object sender, TextChangedEventArgs e)
