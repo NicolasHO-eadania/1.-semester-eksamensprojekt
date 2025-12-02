@@ -79,6 +79,7 @@ namespace Fitness_projekt
             AktivitetTitelTextBox.IsHitTestVisible = true;
             AktivitetBeskrivelseTextBox.IsHitTestVisible = true;
             AktivitetDatoDatePicker.IsHitTestVisible = true;
+            GemAktivitetButton.IsHitTestVisible = true;
         }
 
         private void AktiviteterListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -86,13 +87,21 @@ namespace Fitness_projekt
             AktivitetTitelTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].titel;
             AktivitetBeskrivelseTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].beskrivelse;
             AktivitetDatoDatePicker.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].dato;
+
+            RedigerAktivitetButton.IsHitTestVisible = true;
         }
 
         private void RedigerAktivitetButton_Click(object sender, RoutedEventArgs e)
         {
+            GemAktivitetButton.IsHitTestVisible = true;
+
             AktivitetTitelTextBox.IsHitTestVisible = true;
             AktivitetBeskrivelseTextBox.IsHitTestVisible = true;
             AktivitetDatoDatePicker.IsHitTestVisible = true;
+
+            RedigerAktivitetButton.IsHitTestVisible = false;
+            AktiviteterListBox.IsHitTestVisible = false;
+            NyAktivitetButton.IsHitTestVisible = false;
         }
 
         private void GemAktivitetButton_Click(object sender, RoutedEventArgs e)
@@ -108,7 +117,11 @@ namespace Fitness_projekt
             AktivitetTitelTextBox.Clear();
             AktivitetBeskrivelseTextBox.Clear();
             AktivitetDatoDatePicker.SelectedDate = null;
-        }
+
+            GemAktivitetButton.IsHitTestVisible = false;
+            AktiviteterListBox.IsHitTestVisible = true;
+            NyAktivitetButton.IsHitTestVisible = true;
+       }
 
         private void AktivitetTitelTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
