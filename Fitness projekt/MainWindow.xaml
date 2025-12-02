@@ -6,17 +6,17 @@
         xmlns:local="clr-namespace:Fitness_projekt"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Viewbox Stretch="Uniform">
+    <Viewbox x:Name="AdminViewBox" Stretch="Uniform">
         <Grid Height="434" Width="800">
             <TabControl>
                 <TabItem x:Name="AktiviteterTabAdmin" Header="Aktiviteter">
                     <Grid Background="#FFE5E5E5">
                         <ListBox x:Name="AktiviteterListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Width="382" Height="356" Canvas.Left="10" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="AktiviteterListBox_SelectionChanged" Margin="10,10,0,0"/>
                         <Button x:Name="NyAktivitetButton" Content="Button" Width="382" Height="30" HorizontalAlignment="Left" Canvas.Top="366" VerticalAlignment="Top" Canvas.Left="10" Click="NyAktivitetButton_Click" Margin="10,366,0,0"/>
-                        <Button x:Name="GemAktivitetButton" Content="Button" Height="30" Width="191" HorizontalAlignment="Left" Canvas.Left="593" Canvas.Top="366" VerticalAlignment="Top" Click="GemAktivitetButton_Click" Margin="593,366,0,0"/>
+                        <Button x:Name="GemAktivitetButton" Content="Gem" Height="30" Width="191" HorizontalAlignment="Left" Canvas.Left="593" Canvas.Top="366" VerticalAlignment="Top" Click="GemAktivitetButton_Click" Margin="593,366,0,0"/>
                         <Button x:Name="RedigerAktivitetButton" Content="Button" Height="30" Width="191" HorizontalAlignment="Left" Canvas.Left="402" Canvas.Top="366" VerticalAlignment="Top" Click="RedigerAktivitetButton_Click" Margin="402,366,0,0"/>
-                        <TextBox x:Name="BeskrivelseTextBox" TextWrapping="Wrap" Text="TextBox" Width="382" HorizontalAlignment="Left" Height="330" Canvas.Left="402" Canvas.Top="36" VerticalAlignment="Top" Margin="402,36,0,0"/>
-                        <TextBox x:Name="AktivitetTitelTextBox" Height="26" TextWrapping="Wrap" Text="TextBox" Width="262" HorizontalAlignment="Left" Canvas.Left="402" VerticalAlignment="Top" Canvas.Top="10" Margin="402,10,0,0"/>
+                        <TextBox x:Name="AktivitetBeskrivelseTextBox" TextWrapping="Wrap" Text="TextBox" Width="382" HorizontalAlignment="Left" Height="330" Canvas.Left="402" Canvas.Top="36" VerticalAlignment="Top" Margin="402,36,0,0" TextChanged="AktivitetBeskrivelseTextBox_TextChanged"/>
+                        <TextBox x:Name="AktivitetTitelTextBox" Height="26" TextWrapping="Wrap" Text="TextBox" Width="262" HorizontalAlignment="Left" Canvas.Left="402" VerticalAlignment="Top" Canvas.Top="10" Margin="402,10,0,0" TextChanged="AktivitetTitelTextBox_TextChanged"/>
                         <DatePicker x:Name="AktivitetDatoDatePicker" HorizontalAlignment="Left" Canvas.Left="664" VerticalAlignment="Top" Height="26" Width="120" Canvas.Top="10" Margin="664,10,0,0"/>
                     </Grid>
                 </TabItem>

@@ -76,7 +76,9 @@ namespace Fitness_projekt
 
         private void AktiviteterListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            AktivitetTitelTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].titel;
+            AktivitetBeskrivelseTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].beskrivelse;
+            AktivitetDatoDatePicker.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].dato;
         }
 
         private void RedigerAktivitetButton_Click(object sender, RoutedEventArgs e)
@@ -85,6 +87,18 @@ namespace Fitness_projekt
         }
 
         private void GemAktivitetButton_Click(object sender, RoutedEventArgs e)
+        {
+            Aktivitet nyAktivitet = new Aktivitet(AktivitetTitelTextBox.Text, AktivitetBeskrivelseTextBox.Text, AktivitetDatoDatePicker.Text);
+            aktivitetsliste.liste.Add(nyAktivitet);
+            AktiviteterListBox.Items.Add(nyAktivitet.titel);
+        }
+
+        private void AktivitetTitelTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void AktivitetBeskrivelseTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
