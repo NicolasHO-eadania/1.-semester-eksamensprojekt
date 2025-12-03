@@ -77,6 +77,7 @@ namespace Fitness_projekt
 
 
         //--------------------------Administrator Aktivitetsstyring--------------------------//
+        // MANGLER: Slette aktivitet + hint tekst i tekstbokse + validering af input + (gemme data ved lukning + indlæse data ved opstart)
         private void NyAktivitetButton_Click(object sender, RoutedEventArgs e)
         {
             opretterAktivitet = true;
@@ -128,18 +129,19 @@ namespace Fitness_projekt
             {
                 Aktivitet nyAktivitet = new Aktivitet(AktivitetTitelTextBox.Text, AktivitetBeskrivelseTextBox.Text, AktivitetDatoDatePicker.Text);
                 aktivitetsliste.liste.Add(nyAktivitet);
-                AktiviteterListBox.Items.Add(nyAktivitet.titel);
+
+                AktiviteterListBox.Items.Add(nyAktivitet.titel + "     -     " + nyAktivitet.dato);
 
                 //retter valget i listen til den nye aktivitet der blev oprettet
                 AktiviteterListBox.SelectedIndex = AktiviteterListBox.Items.Count - 1;
             }
-            if (AktiviteterListBox.SelectedIndex >= 0 && AktiviteterListBox.SelectedIndex < aktivitetsliste.liste.Count)
+            else if (AktiviteterListBox.SelectedIndex >= 0 && AktiviteterListBox.SelectedIndex < aktivitetsliste.liste.Count)
             {
                 aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].titel = AktivitetTitelTextBox.Text;
                 aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].beskrivelse = AktivitetBeskrivelseTextBox.Text;
                 aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].dato = AktivitetDatoDatePicker.Text;
                 
-                AktiviteterListBox.Items[AktiviteterListBox.SelectedIndex] = AktivitetTitelTextBox.Text;
+                AktiviteterListBox.Items[AktiviteterListBox.SelectedIndex] = AktivitetTitelTextBox.Text + "     -     " + AktivitetDatoDatePicker.Text;
             }
             opretterAktivitet = false;
 
