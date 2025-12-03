@@ -72,6 +72,11 @@ namespace Fitness_projekt
             public List<Medlem> liste = new List<Medlem>();
         }
 
+
+
+
+
+        //--------------------------Administrator Aktivitetsstyring--------------------------//
         private void NyAktivitetButton_Click(object sender, RoutedEventArgs e)
         {
             opretterAktivitet = true;
@@ -159,6 +164,42 @@ namespace Fitness_projekt
         private void AktivitetBeskrivelseTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void NyAktivitetButton_IsHitTestVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(NyAktivitetButton.IsHitTestVisible == false)
+            {
+                NyAktivitetButton.Opacity = 0.5;
+            }
+            else
+            {
+                NyAktivitetButton.Opacity = 1;
+            }
+        }
+
+        private void RedigerAktivitetButton_IsHitTestVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(RedigerAktivitetButton.IsHitTestVisible == false)
+            {
+                RedigerAktivitetButton.Opacity = 0.5;
+            }
+            else
+            {
+                RedigerAktivitetButton.Opacity = 1;
+            }
+        }
+
+        private void GemAktivitetButton_IsHitTestVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(GemAktivitetButton.IsHitTestVisible == false)
+            {
+                GemAktivitetButton.Opacity = 0.5;
+            }
+            else
+            {
+                GemAktivitetButton.Opacity = 1;
+            }
         }
     }
 }
