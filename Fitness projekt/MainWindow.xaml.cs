@@ -21,6 +21,8 @@ namespace Fitness_projekt
         public Aktivitetsliste aktivitetsliste = new Aktivitetsliste();
         public Medlemsliste medlemsliste = new Medlemsliste();
 
+        public bool opretterAktivitet = false;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -72,6 +74,8 @@ namespace Fitness_projekt
 
         private void NyAktivitetButton_Click(object sender, RoutedEventArgs e)
         {
+            opretterAktivitet = true;
+
             AktivitetTitelTextBox.Clear();
             AktivitetBeskrivelseTextBox.Clear();
             AktivitetDatoDatePicker.SelectedDate = null;
@@ -80,11 +84,17 @@ namespace Fitness_projekt
             AktivitetBeskrivelseTextBox.IsHitTestVisible = true;
             AktivitetDatoDatePicker.IsHitTestVisible = true;
             GemAktivitetButton.IsHitTestVisible = true;
+
+            RedigerAktivitetButton.IsHitTestVisible = false;
         }
 
         private void AktiviteterListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (AktiviteterListBox.SelectedIndex < 0 || AktiviteterListBox.SelectedIndex >= aktivitetsliste.liste.Count)
+            {
+                RedigerAktivitetButton.IsHitTestVisible = false;
+                return;
+            }
             AktivitetTitelTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].titel;
             AktivitetBeskrivelseTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].beskrivelse;
             AktivitetDatoDatePicker.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].dato;
@@ -94,6 +104,8 @@ namespace Fitness_projekt
 
         private void RedigerAktivitetButton_Click(object sender, RoutedEventArgs e)
         {
+            opretterAktivitet = false;
+
             GemAktivitetButton.IsHitTestVisible = true;
 
             AktivitetTitelTextBox.IsHitTestVisible = true;
@@ -107,19 +119,25 @@ namespace Fitness_projekt
 
         private void GemAktivitetButton_Click(object sender, RoutedEventArgs e)
         {
-            if(NyAktivitetButton.IsHitTestVisible == true)
+            if(opretterAktivitet == true)
             {
                 Aktivitet nyAktivitet = new Aktivitet(AktivitetTitelTextBox.Text, AktivitetBeskrivelseTextBox.Text, AktivitetDatoDatePicker.Text);
                 aktivitetsliste.liste.Add(nyAktivitet);
                 AktiviteterListBox.Items.Add(nyAktivitet.titel);
+
+                //retter valget i listen til den nye aktivitet der blev oprettet
+                AktiviteterListBox.SelectedIndex = AktiviteterListBox.Items.Count - 1;
             }
-            else
+            if (AktiviteterListBox.SelectedIndex >= 0 && AktiviteterListBox.SelectedIndex < aktivitetsliste.liste.Count)
             {
                 aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].titel = AktivitetTitelTextBox.Text;
                 aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].beskrivelse = AktivitetBeskrivelseTextBox.Text;
                 aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].dato = AktivitetDatoDatePicker.Text;
+                
                 AktiviteterListBox.Items[AktiviteterListBox.SelectedIndex] = AktivitetTitelTextBox.Text;
             }
+            opretterAktivitet = false;
+
             AktivitetTitelTextBox.IsHitTestVisible = false;
             AktivitetBeskrivelseTextBox.IsHitTestVisible = false;
             AktivitetDatoDatePicker.IsHitTestVisible = false;
