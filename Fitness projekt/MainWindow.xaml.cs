@@ -77,7 +77,7 @@ namespace Fitness_projekt
 
 
         //--------------------------Administrator Aktivitetsstyring--------------------------//
-        // MANGLER: Slette aktivitet + hint tekst i tekstbokse + validering af input + (gemme data ved lukning + indlæse data ved opstart)
+        // MANGLER: hint tekst i tekstbokse + validering af input + (gemme data ved lukning + indlæse data ved opstart)
         private void NyAktivitetButton_Click(object sender, RoutedEventArgs e)
         {
             opretterAktivitet = true;
@@ -92,6 +92,7 @@ namespace Fitness_projekt
             GemAktivitetButton.IsHitTestVisible = true;
 
             RedigerAktivitetButton.IsHitTestVisible = false;
+            SletAktivitetButton.IsHitTestVisible = false;
         }
 
         private void AktiviteterListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -99,6 +100,7 @@ namespace Fitness_projekt
             if (AktiviteterListBox.SelectedIndex < 0 || AktiviteterListBox.SelectedIndex >= aktivitetsliste.liste.Count)
             {
                 RedigerAktivitetButton.IsHitTestVisible = false;
+                SletAktivitetButton.IsHitTestVisible = false;
                 return;
             }
             AktivitetTitelTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].titel;
@@ -106,6 +108,7 @@ namespace Fitness_projekt
             AktivitetDatoDatePicker.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].dato;
 
             RedigerAktivitetButton.IsHitTestVisible = true;
+            SletAktivitetButton.IsHitTestVisible = true;
         }
 
         private void RedigerAktivitetButton_Click(object sender, RoutedEventArgs e)
@@ -119,6 +122,7 @@ namespace Fitness_projekt
             AktivitetDatoDatePicker.IsHitTestVisible = true;
 
             RedigerAktivitetButton.IsHitTestVisible = false;
+            SletAktivitetButton.IsHitTestVisible = false;
             AktiviteterListBox.IsHitTestVisible = false;
             NyAktivitetButton.IsHitTestVisible = false;
         }
@@ -156,6 +160,22 @@ namespace Fitness_projekt
             GemAktivitetButton.IsHitTestVisible = false;
             AktiviteterListBox.IsHitTestVisible = true;
             NyAktivitetButton.IsHitTestVisible = true;
+        }
+
+        private void SletAktivitetButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Er du sikker på at du vil slette aktiviteten?", "Slet aktivitet", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                aktivitetsliste.liste.RemoveAt(AktiviteterListBox.SelectedIndex);
+                AktiviteterListBox.Items.RemoveAt(AktiviteterListBox.SelectedIndex);
+
+                AktivitetTitelTextBox.Clear();
+                AktivitetBeskrivelseTextBox.Clear();
+                AktivitetDatoDatePicker.SelectedDate = null;
+
+                SletAktivitetButton.IsHitTestVisible = false;
+
+            }
         }
 
         private void AktivitetTitelTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -201,6 +221,18 @@ namespace Fitness_projekt
             else
             {
                 GemAktivitetButton.Opacity = 1;
+            }
+        }
+
+        private void SletAktivitetButton_IsHitTestVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (SletAktivitetButton.IsHitTestVisible == false)
+            {
+                SletAktivitetButton.Opacity = 0.5;
+            }
+            else
+            {
+                SletAktivitetButton.Opacity = 1;
             }
         }
     }

@@ -18,7 +18,7 @@
                         <TextBox x:Name="AktivitetBeskrivelseTextBox" TextWrapping="Wrap" Text="" Width="382" HorizontalAlignment="Left" Height="300" Canvas.Left="402" Canvas.Top="36" VerticalAlignment="Top" Margin="402,36,0,0" TextChanged="AktivitetBeskrivelseTextBox_TextChanged" IsHitTestVisible="False" AcceptsReturn="True"/>
                         <TextBox x:Name="AktivitetTitelTextBox" Height="26" TextWrapping="Wrap" Text="" Width="262" HorizontalAlignment="Left" Canvas.Left="402" VerticalAlignment="Top" Canvas.Top="10" Margin="402,10,0,0" TextChanged="AktivitetTitelTextBox_TextChanged" IsHitTestVisible="False"/>
                         <DatePicker x:Name="AktivitetDatoDatePicker" HorizontalAlignment="Left" Canvas.Left="664" VerticalAlignment="Top" Height="26" Width="120" Canvas.Top="10" Margin="664,10,0,0" IsHitTestVisible="False"/>
-                        <Button Content="Slet" HorizontalAlignment="Left" Height="30" Margin="593,336,0,0" VerticalAlignment="Top" Width="191"/>
+                        <Button x:Name="SletAktivitetButton" Content="Slet" HorizontalAlignment="Left" Height="30" Margin="593,336,0,0" VerticalAlignment="Top" Width="191" Click="SletAktivitetButton_Click" IsHitTestVisible="False" IsHitTestVisibleChanged="SletAktivitetButton_IsHitTestVisibleChanged"/>
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="MedlemmerTabAdmin" Header="Medlemmer">
