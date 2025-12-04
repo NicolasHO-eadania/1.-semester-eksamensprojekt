@@ -23,17 +23,36 @@ namespace Fitness_projekt
 
         public bool opretterAktivitet = false;
 
+
+        //-----------Startmedlemmer og aktiviteter----------//
+
+
+
+        //--------------------------------------------------//
+
+
         public MainWindow()
         {
             InitializeComponent();
         }
         public class Medlem
         {
-            public string navn;
+            public string fornavn;
+            public string efternavn;
             public int alder;
-            public string brugerNavn;
-            public string adgangsKode;
+            public string brugernavn;
+            public string adgangskode;
             public Medlemskab medlemskab;
+
+            public Medlem(string fornavn, string efternavn, int alder, string brugernavn, string adgangskode)
+            {
+                this.fornavn = fornavn;
+                this.efternavn = efternavn;
+                this.alder = alder;
+                this.brugernavn = brugernavn;
+                this.adgangskode = adgangskode;
+                this.medlemskab = new Medlemskab();
+            }
         }
         public class Administrator
         {
