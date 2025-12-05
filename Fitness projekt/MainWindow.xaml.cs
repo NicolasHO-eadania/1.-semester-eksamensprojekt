@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,7 +27,21 @@ namespace Fitness_projekt
 
         //-----------Startmedlemmer og aktiviteter----------//
 
+        void LæsMedlemmerFil()
+        {
+            string[] FilLines = System.IO.File.ReadAllLines(@"MedlemmerFil.txt");
 
+            int i = 0;
+            while(i < FilLines.Length)
+            {
+                string[] MedlemVariabler = FilLines[i].Split(";");
+                int alder = Convert.ToInt32(MedlemVariabler[2]);
+                Medlem medlem = new Medlem(MedlemVariabler[0], MedlemVariabler[1], alder, MedlemVariabler[3], MedlemVariabler[4]);
+                medlemsliste.liste.Add(medlem);
+                MedlemmerListBox.Items.Add(MedlemVariabler[0] + " " + MedlemVariabler[1]);
+                i++;
+            }
+        }
 
         //--------------------------------------------------//
 
@@ -34,6 +49,7 @@ namespace Fitness_projekt
         public MainWindow()
         {
             InitializeComponent();
+            LæsMedlemmerFil();
         }
         public class Medlem
         {
@@ -253,6 +269,11 @@ namespace Fitness_projekt
             {
                 SletAktivitetButton.Opacity = 1;
             }
+        }
+
+        private void MedlemmerListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

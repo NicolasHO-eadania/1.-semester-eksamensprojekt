@@ -25,7 +25,7 @@
                 </TabItem>
                 <TabItem x:Name="MedlemmerTabAdmin" Header="Medlemmer">
                     <Grid Background="#FFE5E5E5">
-                        <ListBox x:Name="MedlemmerListBox" HorizontalAlignment="Left" Height="386" Margin="10,0,0,0" VerticalAlignment="Center" Width="382" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                        <ListBox x:Name="MedlemmerListBox" HorizontalAlignment="Left" Height="386" Margin="10,0,0,0" VerticalAlignment="Center" Width="382" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="MedlemmerListBox_SelectionChanged"/>
                         <TextBox x:Name="MedlemAlderTextBox" HorizontalAlignment="Left" Height="26" Margin="734,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="50"/>
                         <TextBox x:Name="MedlemNavnTextBox" HorizontalAlignment="Left" Height="26" Margin="402,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="332"/>
                         <Button Content="???" HorizontalAlignment="Left" Margin="402,203,0,0" VerticalAlignment="Top" Height="35" Width="144"/>
