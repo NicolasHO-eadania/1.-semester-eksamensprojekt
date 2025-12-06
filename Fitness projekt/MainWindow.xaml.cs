@@ -81,13 +81,15 @@ namespace Fitness_projekt
             public string beskrivelse;
             public string dato;
             public Deltagerliste deltagere;
+            public int maxDeltagere;
 
-            public Aktivitet(string titel, string beskrivelse, string dato)
+            public Aktivitet(string titel, string beskrivelse, string dato, int maxDeltagere)
             {
                 deltagere = new Deltagerliste();
                 this.titel = titel;
                 this.beskrivelse = beskrivelse;
                 this.dato = dato;
+                this.maxDeltagere = maxDeltagere;
             }
         }
         public class Medlemskab
@@ -120,11 +122,13 @@ namespace Fitness_projekt
             AktivitetTitelTextBox.Clear();
             AktivitetBeskrivelseTextBox.Clear();
             AktivitetDatoDatePicker.SelectedDate = null;
+            AktivitetMaxDeltagereTextBox.Clear();
 
             AktivitetTitelTextBox.IsHitTestVisible = true;
             AktivitetBeskrivelseTextBox.IsHitTestVisible = true;
             AktivitetDatoDatePicker.IsHitTestVisible = true;
             GemAktivitetButton.IsHitTestVisible = true;
+            AktivitetMaxDeltagereTextBox.IsHitTestVisible = true;
 
             RedigerAktivitetButton.IsHitTestVisible = false;
             SletAktivitetButton.IsHitTestVisible = false;
@@ -141,6 +145,7 @@ namespace Fitness_projekt
             AktivitetTitelTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].titel;
             AktivitetBeskrivelseTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].beskrivelse;
             AktivitetDatoDatePicker.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].dato;
+            AktivitetMaxDeltagereTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].maxDeltagere.ToString();
 
             RedigerAktivitetButton.IsHitTestVisible = true;
             SletAktivitetButton.IsHitTestVisible = true;
@@ -164,9 +169,18 @@ namespace Fitness_projekt
 
         private void GemAktivitetButton_Click(object sender, RoutedEventArgs e)
         {
-            if(opretterAktivitet == true)
+            int maxDeltagere = 999;
+            if (!string.IsNullOrEmpty(AktivitetMaxDeltagereTextBox.Text))
             {
-                Aktivitet nyAktivitet = new Aktivitet(AktivitetTitelTextBox.Text, AktivitetBeskrivelseTextBox.Text, AktivitetDatoDatePicker.Text);
+                if (!int.TryParse(AktivitetMaxDeltagereTextBox.Text, out int maxDeltagereAendret))
+                {
+                    return;
+                }
+                maxDeltagere = maxDeltagereAendret;
+            }
+            if (opretterAktivitet == true)
+            {
+                Aktivitet nyAktivitet = new Aktivitet(AktivitetTitelTextBox.Text, AktivitetBeskrivelseTextBox.Text, AktivitetDatoDatePicker.Text, maxDeltagere);
                 aktivitetsliste.liste.Add(nyAktivitet);
 
                 AktiviteterListBox.Items.Add(nyAktivitet.titel + "     -     " + nyAktivitet.dato);
@@ -179,7 +193,8 @@ namespace Fitness_projekt
                 aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].titel = AktivitetTitelTextBox.Text;
                 aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].beskrivelse = AktivitetBeskrivelseTextBox.Text;
                 aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].dato = AktivitetDatoDatePicker.Text;
-                
+                aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].maxDeltagere = maxDeltagere;
+
                 AktiviteterListBox.Items[AktiviteterListBox.SelectedIndex] = AktivitetTitelTextBox.Text + "     -     " + AktivitetDatoDatePicker.Text;
             }
             opretterAktivitet = false;
@@ -187,10 +202,12 @@ namespace Fitness_projekt
             AktivitetTitelTextBox.IsHitTestVisible = false;
             AktivitetBeskrivelseTextBox.IsHitTestVisible = false;
             AktivitetDatoDatePicker.IsHitTestVisible = false;
+            AktivitetMaxDeltagereTextBox.IsHitTestVisible = false;
 
             AktivitetTitelTextBox.Clear();
             AktivitetBeskrivelseTextBox.Clear();
             AktivitetDatoDatePicker.SelectedDate = null;
+            AktivitetMaxDeltagereTextBox.Clear();
 
             GemAktivitetButton.IsHitTestVisible = false;
             AktiviteterListBox.IsHitTestVisible = true;
@@ -207,6 +224,7 @@ namespace Fitness_projekt
                 AktivitetTitelTextBox.Clear();
                 AktivitetBeskrivelseTextBox.Clear();
                 AktivitetDatoDatePicker.SelectedDate = null;
+                AktivitetMaxDeltagereTextBox.Clear();
 
                 SletAktivitetButton.IsHitTestVisible = false;
 
