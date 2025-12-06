@@ -10,16 +10,16 @@
         <Grid Height="434" Width="800">
             <Rectangle HorizontalAlignment="Left" Height="414" Margin="10,0,0,0" VerticalAlignment="Center" Width="385" Fill="#FFE5E5E5"/>
             <Rectangle HorizontalAlignment="Left" Height="414" Margin="405,0,0,0" VerticalAlignment="Center" Width="385" Fill="#FFE5E5E5"/>
-            <ListBox x:Name="MineAktivitetListeListBox" HorizontalAlignment="Left" Height="170" Margin="15,40,0,0" VerticalAlignment="Top" Width="375" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="14"/>
+            <ListBox x:Name="MineAktivitetListeListBox" HorizontalAlignment="Left" Height="170" Margin="15,40,0,0" VerticalAlignment="Top" Width="375" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="14" SelectionChanged="MineAktivitetListeListBox_SelectionChanged"/>
             <TextBox x:Name="AktivitetTitelTextBox" HorizontalAlignment="Left" Height="25" Margin="410,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="295" FontSize="14"/>
             <TextBox x:Name="AktivitetDatoTextBox" HorizontalAlignment="Left" Height="25" Margin="705,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" FontSize="14" TextAlignment="Center"/>
             <TextBox x:Name="AktivitetBeskrivelseTextBox" HorizontalAlignment="Left" Height="150" Margin="410,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="375" FontSize="14"/>
             <ListBox x:Name="AktivitetDeltagereListeListBox" HorizontalAlignment="Left" Height="150" Margin="410,239,0,0" VerticalAlignment="Top" Width="375" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="14"/>
-            <Button x:Name="DeltagButton" Content="Deltag" HorizontalAlignment="Left" Height="25" Margin="410,394,0,0" VerticalAlignment="Top" Width="188" FontSize="14"/>
+            <Button x:Name="DeltagButton" Content="Deltag" HorizontalAlignment="Left" Height="25" Margin="410,394,0,0" VerticalAlignment="Top" Width="188" FontSize="14" Click="DeltagButton_Click"/>
             <TextBlock HorizontalAlignment="Left" Height="25" Margin="15,15,0,0" TextWrapping="Wrap" Text="Mine aktiviteter" VerticalAlignment="Top" Width="375" TextAlignment="Center" FontSize="16"/>
-            <ListBox x:Name="AlleAktiviteterListeListBox" HorizontalAlignment="Left" Height="170" Margin="15,249,0,0" VerticalAlignment="Top" Width="375" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="14"/>
+            <ListBox x:Name="AlleAktiviteterListeListBox" HorizontalAlignment="Left" Height="170" Margin="15,249,0,0" VerticalAlignment="Top" Width="375" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="14" SelectionChanged="AlleAktiviteterListeListBox_SelectionChanged"/>
             <TextBlock HorizontalAlignment="Left" Height="25" Margin="15,224,0,0" TextWrapping="Wrap" Text="Alle aktiviteter" VerticalAlignment="Top" Width="375" FontSize="16" TextAlignment="Center"/>
-            <Button x:Name="ForladButton" Content="Forlad" HorizontalAlignment="Left" Height="25" Margin="598,394,0,0" VerticalAlignment="Top" Width="187" FontSize="14"/>
+            <Button x:Name="ForladButton" Content="Forlad" HorizontalAlignment="Left" Height="25" Margin="598,394,0,0" VerticalAlignment="Top" Width="187" FontSize="14" Click="ForladButton_Click"/>
             <TextBlock x:Name="AntalDeltagereTextBlock" HorizontalAlignment="Left" Height="22" Margin="678,217,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="107" FontSize="14" TextAlignment="Right"/>
             <TextBlock HorizontalAlignment="Left" Height="22" Margin="410,217,0,0" TextWrapping="Wrap" Text="Deltagere" VerticalAlignment="Top" Width="151" FontSize="14"/>
         </Grid>

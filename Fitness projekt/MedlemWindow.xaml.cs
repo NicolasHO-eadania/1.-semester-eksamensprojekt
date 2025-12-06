@@ -21,5 +21,25 @@ namespace Fitness_projekt
         {
             InitializeComponent();
         }
+
+        private void MineAktivitetListeListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void AlleAktiviteterListeListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DeltagButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ForladButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
