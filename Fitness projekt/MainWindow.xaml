@@ -10,19 +10,19 @@
         <Grid Height="434" Width="800">
             <TabControl>
                 <TabItem x:Name="AktiviteterTabAdmin" Header="Aktiviteter">
-                    <Grid Background="GreenYellow">
+                    <Grid Background="#FFE5E5E5">
                         <ListBox x:Name="AktiviteterListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Width="382" Height="351" Canvas.Left="10" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="AktiviteterListBox_SelectionChanged" Margin="10,10,0,0"/>
                         <Button x:Name="NyAktivitetButton" Content="Opret ny aktvitet" Width="382" Height="30" HorizontalAlignment="Left" Canvas.Top="366" VerticalAlignment="Top" Canvas.Left="10" Click="NyAktivitetButton_Click" Margin="10,366,0,0" IsHitTestVisibleChanged="NyAktivitetButton_IsHitTestVisibleChanged"/>
                         <Button x:Name="GemAktivitetButton" Content="Gem" Height="30" Width="382" HorizontalAlignment="Left" Canvas.Left="593" Canvas.Top="366" VerticalAlignment="Top" Click="GemAktivitetButton_Click" Margin="402,366,0,0" IsHitTestVisible="false" IsHitTestVisibleChanged="GemAktivitetButton_IsHitTestVisibleChanged"/>
                         <Button x:Name="RedigerAktivitetButton" Content="Rediger" Height="30" Width="191" HorizontalAlignment="Left" Canvas.Left="402" Canvas.Top="366" VerticalAlignment="Top" Click="RedigerAktivitetButton_Click" Margin="402,336,0,0" IsHitTestVisible="False" IsHitTestVisibleChanged="RedigerAktivitetButton_IsHitTestVisibleChanged"/>
-                        <TextBox x:Name="AktivitetBeskrivelseTextBox" TextWrapping="Wrap" Text="" Width="382" HorizontalAlignment="Left" Height="142" Canvas.Left="402" Canvas.Top="36" VerticalAlignment="Top" Margin="402,36,0,0" TextChanged="AktivitetBeskrivelseTextBox_TextChanged" IsHitTestVisible="False" AcceptsReturn="True"/>
+                        <TextBox x:Name="AktivitetBeskrivelseTextBox" TextWrapping="Wrap" Text="" Width="382" HorizontalAlignment="Left" Height="152" Canvas.Left="402" Canvas.Top="36" VerticalAlignment="Top" Margin="402,36,0,0" TextChanged="AktivitetBeskrivelseTextBox_TextChanged" IsHitTestVisible="False" AcceptsReturn="True"/>
                         <TextBox x:Name="AktivitetTitelTextBox" Height="26" TextWrapping="Wrap" Text="" Width="262" HorizontalAlignment="Left" Canvas.Left="402" VerticalAlignment="Top" Canvas.Top="10" Margin="402,10,0,0" TextChanged="AktivitetTitelTextBox_TextChanged" IsHitTestVisible="False"/>
                         <DatePicker x:Name="AktivitetDatoDatePicker" HorizontalAlignment="Left" Canvas.Left="664" VerticalAlignment="Top" Height="26" Width="120" Canvas.Top="10" Margin="664,10,0,0" IsHitTestVisible="False"/>
                         <Button x:Name="SletAktivitetButton" Content="Slet" HorizontalAlignment="Left" Height="30" Margin="593,336,0,0" VerticalAlignment="Top" Width="191" Click="SletAktivitetButton_Click" IsHitTestVisible="False" IsHitTestVisibleChanged="SletAktivitetButton_IsHitTestVisibleChanged"/>
-                        <ListBox HorizontalAlignment="Left" Height="118" Margin="402,213,0,0" VerticalAlignment="Top" Width="382" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-                        <TextBlock HorizontalAlignment="Left" Height="19" Margin="402,191,0,0" TextWrapping="Wrap" Text="Deltagere" VerticalAlignment="Top" Width="66"/>
-                        <TextBox x:Name="AktivitetMaxDeltagereTextBox" HorizontalAlignment="Left" Height="25" Margin="734,183,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50" IsHitTestVisible="False"/>
-                        <TextBlock HorizontalAlignment="Left" Height="32" Margin="675,178,0,0" TextWrapping="Wrap" Text="Max Deltagere" VerticalAlignment="Top" Width="54" TextAlignment="Center"/>
+                        <ListBox x:Name="AktivitetDeltagereListBox" HorizontalAlignment="Left" Height="118" Margin="402,213,0,0" VerticalAlignment="Top" Width="382" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                        <TextBlock HorizontalAlignment="Left" Height="19" Margin="410,0,0,0" TextWrapping="Wrap" Text="Deltagere" VerticalAlignment="Center" Width="66"/>
+                        <TextBox x:Name="AktivitetMaxDeltagereTextBox" HorizontalAlignment="Left" Height="20" Margin="734,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="50" IsHitTestVisible="False"/>
+                        <TextBlock HorizontalAlignment="Left" Height="19" Margin="698,0,0,0" TextWrapping="Wrap" Text="Max" VerticalAlignment="Center" Width="36" TextAlignment="Center"/>
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="MedlemmerTabAdmin" Header="Medlemmer">

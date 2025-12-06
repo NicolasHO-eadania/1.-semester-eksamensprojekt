@@ -160,6 +160,7 @@ namespace Fitness_projekt
             AktivitetTitelTextBox.IsHitTestVisible = true;
             AktivitetBeskrivelseTextBox.IsHitTestVisible = true;
             AktivitetDatoDatePicker.IsHitTestVisible = true;
+            AktivitetMaxDeltagereTextBox.IsHitTestVisible = true;
 
             RedigerAktivitetButton.IsHitTestVisible = false;
             SletAktivitetButton.IsHitTestVisible = false;
@@ -227,7 +228,6 @@ namespace Fitness_projekt
                 AktivitetMaxDeltagereTextBox.Clear();
 
                 SletAktivitetButton.IsHitTestVisible = false;
-
             }
         }
 
