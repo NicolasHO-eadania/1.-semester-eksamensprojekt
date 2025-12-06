@@ -23,13 +23,23 @@ namespace Fitness_projekt
             InitializeComponent();
         }
 
+        string AdministratorBrugernavn = "Admin";
+        string AdministratorAdgangskode = "Admin123";
+
         private void LogIndButton_Click(object sender, RoutedEventArgs e)
         {
             string brugernavn = BrugernavnTextBox.Text;
             string adgangskode = AdgangskodeTextBox.Text;
 
-            string[] FilLines = System.IO.File.ReadAllLines(@"MedlemmerFil.txt");
+            if(brugernavn == AdministratorBrugernavn && adgangskode == AdministratorAdgangskode)
+            {
+                MainWindow AdministratorWindow = new MainWindow();
+                AdministratorWindow.Show();
+                Close();
+                return;
+            }
 
+            string[] FilLines = System.IO.File.ReadAllLines(@"MedlemmerFil.txt");
             int i = 0;
             while (i < FilLines.Length)
             {
