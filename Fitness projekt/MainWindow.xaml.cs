@@ -19,12 +19,13 @@ namespace Fitness_projekt
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public Aktivitetsliste aktivitetsliste = new Aktivitetsliste();
         public Medlemsliste medlemsliste = new Medlemsliste();
 
         public bool opretterAktivitet = false;
 
-
+        
         //-----------Startmedlemmer og aktiviteter----------//
 
         void LæsMedlemmerFil()
@@ -43,6 +44,23 @@ namespace Fitness_projekt
             }
         }
 
+        void LæsAktiviteterFil()
+        {
+            string[] FilLines = System.IO.File.ReadAllLines(@"AktiviteterFil.txt");
+
+            int i = 0;
+            while (i < FilLines.Length)
+            {
+                string[] AktivitetVariabler = FilLines[i].Split(";");
+                int maxDeltagere = Convert.ToInt32(AktivitetVariabler[3]);
+                Aktivitet aktivitet = new Aktivitet(AktivitetVariabler[0], AktivitetVariabler[1], AktivitetVariabler[2], maxDeltagere);
+                aktivitetsliste.liste.Add(aktivitet);
+                AktiviteterListBox.Items.Add(AktivitetVariabler[0] + "     -     " + AktivitetVariabler[2]);
+                i++;
+            }
+        }
+
+
         //--------------------------------------------------//
 
 
@@ -50,6 +68,7 @@ namespace Fitness_projekt
         {
             InitializeComponent();
             LæsMedlemmerFil();
+            LæsAktiviteterFil();
         }
 
         //--------------------------Administrator Aktivitetsstyring--------------------------//
@@ -88,6 +107,7 @@ namespace Fitness_projekt
 
             RedigerAktivitetButton.IsHitTestVisible = true;
             SletAktivitetButton.IsHitTestVisible = true;
+
         }
 
         private void RedigerAktivitetButton_Click(object sender, RoutedEventArgs e)

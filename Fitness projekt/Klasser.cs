@@ -4,10 +4,6 @@ using System.Text;
 
 namespace Fitness_projekt
 {
-
-
-
-
     public class Medlem
     {
         public string fornavn;
@@ -24,7 +20,7 @@ namespace Fitness_projekt
             this.alder = alder;
             this.brugernavn = brugernavn;
             this.adgangskode = adgangskode;
-            this.medlemskab = new Medlemskab();
+            medlemskab = new Medlemskab();
         }
     }
     public class Administrator
@@ -37,8 +33,8 @@ namespace Fitness_projekt
         public string titel;
         public string beskrivelse;
         public string dato;
-        public Deltagerliste deltagere;
         public int maxDeltagere;
+        public Deltagerliste deltagere;
 
         public Aktivitet(string titel, string beskrivelse, string dato, int maxDeltagere)
         {
@@ -51,7 +47,10 @@ namespace Fitness_projekt
     }
     public class Medlemskab
     {
-        public bool erMedlem;
+        public bool over65;
+        public bool under15;
+        public bool over30;
+        public bool under30;
     }
     public class Aktivitetsliste
     {
@@ -65,5 +64,4 @@ namespace Fitness_projekt
     {
         public List<Medlem> liste = new List<Medlem>();
     }
-
 }
