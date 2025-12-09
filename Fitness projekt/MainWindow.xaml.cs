@@ -19,7 +19,7 @@ namespace Fitness_projekt
     /// </summary>
     public partial class MainWindow : Window
     {
-        //startup window  +  hint tekst  +  validering  +  deltagere  +  kommentarer  +  medlemmer tab  +  medlemskabstyper  +  (gem ændringer til filer)
+        //startup window  +  hint tekst  +  validering (1/2)  +  deltagere(1/2)  +  kommentarer  +  medlemmer tab  +  medlemskabstyper  +  (gem ændringer til filer)
 
 
 
@@ -36,12 +36,12 @@ namespace Fitness_projekt
 
         void LæsMedlemmerFil()
         {
-            string[] FilLines = System.IO.File.ReadAllLines(@"MedlemmerFil.txt");
+            string[] filLines = System.IO.File.ReadAllLines(@"MedlemmerFil.txt");
 
             int i = 0;
-            while(i < FilLines.Length)
+            while(i < filLines.Length)
             {
-                string[] MedlemVariabler = FilLines[i].Split(";");
+                string[] MedlemVariabler = filLines[i].Split(";");
                 int alder = Convert.ToInt32(MedlemVariabler[2]);
                 Medlem medlem = new Medlem(MedlemVariabler[0], MedlemVariabler[1], alder, MedlemVariabler[3], MedlemVariabler[4]);
                 medlemsliste.liste.Add(medlem);
@@ -92,6 +92,39 @@ namespace Fitness_projekt
         }
 
 
+        // hjælp fra GitHub Copilot
+        void GemAktiviteterFil()
+        {
+            List<string> FilLines = new List<string>();
+            int i = 0;
+            while (i < aktivitetsliste.liste.Count)
+            {
+                Aktivitet aktivitet = aktivitetsliste.liste[i];
+
+                List<string> dele = new List<string>();
+                dele.Add(aktivitet.titel);
+                dele.Add(aktivitet.beskrivelse);
+                dele.Add(aktivitet.dato);
+                dele.Add(aktivitet.maxDeltagere.ToString());
+
+                int j = 0;
+                while (j < aktivitet.deltagere.liste.Count)
+                {
+                    Medlem medlem = aktivitet.deltagere.liste[j];
+                    dele.Add(medlem.brugernavn);
+                    j++;
+                }
+
+                FilLines.Add(string.Join(";", dele));
+                i++;
+            }
+
+            File.WriteAllLines(@"AktiviteterFil.txt", FilLines);
+        }
+
+
+
+
         //--------------------------------------------------//
 
 
@@ -106,8 +139,7 @@ namespace Fitness_projekt
         private void NyAktivitetButton_Click(object sender, RoutedEventArgs e)
         {
             opretterAktivitet = true;
-            NyAktivitetButton.IsHitTestVisible = false;
-
+            
             AktivitetTitelTextBox.Clear();
             AktivitetBeskrivelseTextBox.Clear();
             AktivitetDatoDatePicker.SelectedDate = null;
@@ -122,6 +154,8 @@ namespace Fitness_projekt
 
             RedigerAktivitetButton.IsHitTestVisible = false;
             SletAktivitetButton.IsHitTestVisible = false;
+            NyAktivitetButton.IsHitTestVisible = false;
+            AktiviteterListBox.IsHitTestVisible = false;
         }
 
         private void AktiviteterListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -153,7 +187,6 @@ namespace Fitness_projekt
             }
             RedigerAktivitetButton.IsHitTestVisible = true;
             SletAktivitetButton.IsHitTestVisible = true;
-
         }
 
         private void RedigerAktivitetButton_Click(object sender, RoutedEventArgs e)
@@ -191,6 +224,8 @@ namespace Fitness_projekt
 
                 AktiviteterListBox.Items.Add(nyAktivitet.titel + "     -     " + nyAktivitet.dato);
 
+                GemAktiviteterFil();
+                
                 //retter valget i listen til den nye aktivitet der blev oprettet
                 AktiviteterListBox.SelectedIndex = AktiviteterListBox.Items.Count - 1;
             }
@@ -201,6 +236,7 @@ namespace Fitness_projekt
                 aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].dato = AktivitetDatoDatePicker.Text;
 
                 AktiviteterListBox.Items[AktiviteterListBox.SelectedIndex] = AktivitetTitelTextBox.Text + "     -     " + AktivitetDatoDatePicker.Text;
+                GemAktiviteterFil();
             }
             opretterAktivitet = false;
 
@@ -234,12 +270,14 @@ namespace Fitness_projekt
                 AktivitetDeltagereListBox.Items.Clear();
 
                 SletAktivitetButton.IsHitTestVisible = false;
+
+                GemAktiviteterFil();
             }
         }
 
         private void AktivitetTitelTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(AktivitetTitelTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetBeskrivelseTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetDatoDatePicker.Text))
+            if (!string.IsNullOrWhiteSpace(AktivitetTitelTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetBeskrivelseTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetDatoDatePicker.Text) && AktiviteterListBox.IsHitTestVisible == false)
             {
                 GemAktivitetButton.IsHitTestVisible = true;
             }
@@ -251,7 +289,7 @@ namespace Fitness_projekt
 
         private void AktivitetBeskrivelseTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(AktivitetBeskrivelseTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetTitelTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetDatoDatePicker.Text))
+            if (!string.IsNullOrWhiteSpace(AktivitetBeskrivelseTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetTitelTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetDatoDatePicker.Text) && AktiviteterListBox.IsHitTestVisible == false)
             {
                 GemAktivitetButton.IsHitTestVisible = true;
             }
@@ -263,7 +301,7 @@ namespace Fitness_projekt
 
         private void AktivitetDatoDatePicker_CalendarClosed(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(AktivitetBeskrivelseTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetTitelTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetDatoDatePicker.Text))
+            if (!string.IsNullOrWhiteSpace(AktivitetBeskrivelseTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetTitelTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetDatoDatePicker.Text) && AktiviteterListBox.IsHitTestVisible == false)
             {
                 GemAktivitetButton.IsHitTestVisible = true;
             }
@@ -322,7 +360,7 @@ namespace Fitness_projekt
             }
         }
 
-
+        
 
         //---------------------------------------------------------------------------------------
 
