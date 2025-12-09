@@ -23,15 +23,14 @@ namespace Fitness_projekt
             InitializeComponent();
         }
 
-        string AdministratorBrugernavn = "Admin";
-        string AdministratorAdgangskode = "Admin123";
+        Administrator administrator = new Administrator("Admin", "Admin123");
 
         private void LogIndButton_Click(object sender, RoutedEventArgs e)
         {
             string brugernavn = BrugernavnTextBox.Text;
             string adgangskode = AdgangskodeTextBox.Text;
 
-            if(brugernavn == AdministratorBrugernavn && adgangskode == AdministratorAdgangskode)
+            if(brugernavn == administrator.brugernavn && adgangskode == administrator.adgangskode)
             {
                 MainWindow AdministratorWindow = new MainWindow();
                 AdministratorWindow.Show();
@@ -46,7 +45,7 @@ namespace Fitness_projekt
                 string[] MedlemVariabler = FilLines[i].Split(";");
                 if (brugernavn == MedlemVariabler[3] && adgangskode == MedlemVariabler[4])
                 {
-                    MedlemWindow medlemWindow = new MedlemWindow();
+                    MedlemWindow medlemWindow = new MedlemWindow(brugernavn, adgangskode);
                     medlemWindow.Show();
                     Close();
                     return;

@@ -11,22 +11,28 @@ namespace Fitness_projekt
         public int alder;
         public string brugernavn;
         public string adgangskode;
-        public Medlemskab medlemskab;
+        public string medlemskab;
 
-        public Medlem(string fornavn, string efternavn, int alder, string brugernavn, string adgangskode)
+        public Medlem(string fornavn, string efternavn, int alder, string brugernavn, string adgangskode, string medlemskab)
         {
             this.fornavn = fornavn;
             this.efternavn = efternavn;
             this.alder = alder;
             this.brugernavn = brugernavn;
             this.adgangskode = adgangskode;
-            medlemskab = new Medlemskab();
+            this.medlemskab = medlemskab;
         }
     }
     public class Administrator
     {
-        public string brugerNavn;
-        public string adgangsKode;
+        public string brugernavn;
+        public string adgangskode;
+
+        public Administrator(string brugernavn, string adgangskode)
+        {
+            this.brugernavn = brugernavn;
+            this.adgangskode = adgangskode;
+        }
     }
     public class Aktivitet
     {
@@ -44,13 +50,6 @@ namespace Fitness_projekt
             this.dato = dato;
             this.maxDeltagere = maxDeltagere;
         }
-    }
-    public class Medlemskab
-    {
-        public bool over65;
-        public bool under15;
-        public bool over30;
-        public bool under30;
     }
     public class Aktivitetsliste
     {

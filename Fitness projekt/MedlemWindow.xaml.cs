@@ -17,7 +17,22 @@ namespace Fitness_projekt
     /// </summary>
     public partial class MedlemWindow : Window
     {
+        // --------- Validering ---------- Gem i fil -------- maks deltagere
+        
+        
+        
         public Aktivitetsliste aktivitetsliste = new Aktivitetsliste();
+
+        private readonly string brugernavn;
+        private readonly string adgangskode;
+
+        public MedlemWindow(string brugernavn, string adgangskode)
+        {
+            InitializeComponent();
+            LæsAktiviteterFil();
+            this.brugernavn = brugernavn;
+            this.adgangskode = adgangskode;
+        }
 
         void LæsAktiviteterFil()
         {
@@ -33,13 +48,6 @@ namespace Fitness_projekt
                 AlleAktiviteterListBox.Items.Add(AktivitetVariabler[0] + "     -     " + AktivitetVariabler[2]);
                 i++;
             }
-        }
-
-
-        public MedlemWindow()
-        {
-            InitializeComponent();
-            LæsAktiviteterFil();
         }
 
         private void MineAktiviteterListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -19,7 +19,7 @@ namespace Fitness_projekt
     /// </summary>
     public partial class MainWindow : Window
     {
-        //startup window  +  hint tekst  +  validering (1/2)  +  deltagere(1/2)  +  kommentarer  +  medlemmer tab  +  medlemskabstyper  +  (gem ændringer til filer)
+        //startup window  +  hint tekst  +  kommentarer  +  layout
 
 
 
@@ -43,7 +43,7 @@ namespace Fitness_projekt
             {
                 string[] MedlemVariabler = filLines[i].Split(";");
                 int alder = Convert.ToInt32(MedlemVariabler[2]);
-                Medlem medlem = new Medlem(MedlemVariabler[0], MedlemVariabler[1], alder, MedlemVariabler[3], MedlemVariabler[4]);
+                Medlem medlem = new Medlem(MedlemVariabler[0], MedlemVariabler[1], alder, MedlemVariabler[3], MedlemVariabler[4], MedlemVariabler[5]);
                 medlemsliste.liste.Add(medlem);
                 MedlemmerListBox.Items.Add(MedlemVariabler[0] + " " + MedlemVariabler[1]);
                 i++;
@@ -69,6 +69,8 @@ namespace Fitness_projekt
             }
         }
 
+
+        // hjælp fra GitHub Copilot
         void TilføjDeltagere(Aktivitet aktivitet, string[] aktivitetVariabler)
         {
             int j = 4;
@@ -368,8 +370,21 @@ namespace Fitness_projekt
 
         private void MedlemmerListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            MedlemNavnTextBox.Clear();
+            MedlemAlderTextBox.Clear();
+            MedlemBrugernavnTextBox.Clear();
+            MedlemAdgangskodeTextBox.Clear();
+            MedlemMedlemskabTextBox.Clear();
+
+            Medlem valgt = medlemsliste.liste[MedlemmerListBox.SelectedIndex];
+
+            MedlemNavnTextBox.Text = valgt.fornavn + " " + valgt.efternavn;
+            MedlemAlderTextBox.Text = valgt.alder.ToString();
+            MedlemBrugernavnTextBox.Text = valgt.brugernavn;
+            MedlemAdgangskodeTextBox.Text = valgt.adgangskode;
+            MedlemMedlemskabTextBox.Text = valgt.medlemskab;
+
 
         }
-
     }
 }

@@ -11,28 +11,42 @@
             <TabControl>
                 <TabItem x:Name="AktiviteterTabAdmin" Header="Aktiviteter">
                     <Grid Background="#FFE5E5E5">
-                        <ListBox x:Name="AktiviteterListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Width="382" Height="351" Canvas.Left="10" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="AktiviteterListBox_SelectionChanged" Margin="10,10,0,0"/>
+                        <ListBox x:Name="AktiviteterListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Width="382" Height="351" Canvas.Left="10" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="AktiviteterListBox_SelectionChanged" Margin="10,10,0,0" FontSize="14"/>
                         <Button x:Name="NyAktivitetButton" Content="Opret ny aktvitet" Width="382" Height="30" HorizontalAlignment="Left" Canvas.Top="366" VerticalAlignment="Top" Canvas.Left="10" Click="NyAktivitetButton_Click" Margin="10,366,0,0" IsHitTestVisibleChanged="NyAktivitetButton_IsHitTestVisibleChanged"/>
                         <Button x:Name="GemAktivitetButton" Content="Gem" Height="30" Width="382" HorizontalAlignment="Left" Canvas.Left="593" Canvas.Top="366" VerticalAlignment="Top" Click="GemAktivitetButton_Click" Margin="402,366,0,0" IsHitTestVisible="false" IsHitTestVisibleChanged="GemAktivitetButton_IsHitTestVisibleChanged"/>
                         <Button x:Name="RedigerAktivitetButton" Content="Rediger" Height="30" Width="191" HorizontalAlignment="Left" Canvas.Left="402" Canvas.Top="366" VerticalAlignment="Top" Click="RedigerAktivitetButton_Click" Margin="402,336,0,0" IsHitTestVisible="False" IsHitTestVisibleChanged="RedigerAktivitetButton_IsHitTestVisibleChanged"/>
                         <TextBox x:Name="AktivitetBeskrivelseTextBox" TextWrapping="Wrap" Text="" Width="382" HorizontalAlignment="Left" Height="140" Canvas.Left="402" Canvas.Top="36" VerticalAlignment="Top" Margin="402,36,0,0" TextChanged="AktivitetBeskrivelseTextBox_TextChanged" IsHitTestVisible="False" AcceptsReturn="True"/>
-                        <TextBox x:Name="AktivitetTitelTextBox" Height="26" TextWrapping="Wrap" Text="" Width="262" HorizontalAlignment="Left" Canvas.Left="402" VerticalAlignment="Top" Canvas.Top="10" Margin="402,10,0,0" TextChanged="AktivitetTitelTextBox_TextChanged" IsHitTestVisible="False"/>
+                        <TextBox x:Name="AktivitetTitelTextBox" Height="26" TextWrapping="Wrap" Text="" Width="262" HorizontalAlignment="Left" Canvas.Left="402" VerticalAlignment="Top" Canvas.Top="10" Margin="402,10,0,0" TextChanged="AktivitetTitelTextBox_TextChanged" IsHitTestVisible="False" FontSize="14"/>
                         <DatePicker x:Name="AktivitetDatoDatePicker" HorizontalAlignment="Left" Canvas.Left="664" VerticalAlignment="Top" Height="26" Width="120" Canvas.Top="10" Margin="664,10,0,0" IsHitTestVisible="False" CalendarClosed="AktivitetDatoDatePicker_CalendarClosed"/>
                         <Button x:Name="SletAktivitetButton" Content="Slet" HorizontalAlignment="Left" Height="30" Margin="593,336,0,0" VerticalAlignment="Top" Width="191" Click="SletAktivitetButton_Click" IsHitTestVisible="False" IsHitTestVisibleChanged="SletAktivitetButton_IsHitTestVisibleChanged"/>
                         <ListBox x:Name="AktivitetDeltagereListBox" HorizontalAlignment="Left" Height="118" Margin="402,213,0,0" VerticalAlignment="Top" Width="382" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-                        <TextBlock HorizontalAlignment="Left" Height="19" Margin="560,0,0,0" TextWrapping="Wrap" Text="Deltagere" VerticalAlignment="Center" Width="66" TextAlignment="Center"/>
-                        <TextBox x:Name="AktivitetMaxDeltagereTextBox" HorizontalAlignment="Left" Height="20" Margin="402,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="50" IsHitTestVisible="False"/>
+                        <TextBlock HorizontalAlignment="Left" Height="19" Margin="402,0,0,0" TextWrapping="Wrap" Text="Deltagere" VerticalAlignment="Center" Width="66" TextAlignment="Center"/>
+                        <TextBox x:Name="AktivitetMaxDeltagereTextBox" HorizontalAlignment="Left" Height="20" Margin="734,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="50" IsHitTestVisible="False"/>
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="MedlemmerTabAdmin" Header="Medlemmer">
                     <Grid Background="#FFE5E5E5">
-                        <ListBox x:Name="MedlemmerListBox" HorizontalAlignment="Left" Height="386" Margin="10,0,0,0" VerticalAlignment="Center" Width="382" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="MedlemmerListBox_SelectionChanged"/>
-                        <TextBox x:Name="MedlemAlderTextBox" HorizontalAlignment="Left" Height="26" Margin="734,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="50"/>
-                        <TextBox x:Name="MedlemNavnTextBox" HorizontalAlignment="Left" Height="26" Margin="402,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="332"/>
-                        <Button Content="???" HorizontalAlignment="Left" Margin="402,203,0,0" VerticalAlignment="Top" Height="35" Width="144"/>
-                        <TextBox x:Name="MedlemBrugernavnTextBox" HorizontalAlignment="Left" Margin="402,36,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="191" Height="26"/>
-                        <TextBox x:Name="MedlemAdgangskodeTextBox" HorizontalAlignment="Left" Margin="593,36,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="191" Height="26"/>
-                        <TextBox x:Name="MedlemMedlemskabTextBox" HorizontalAlignment="Left" Height="106" Margin="402,62,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="382"/>
+                        <ListBox x:Name="MedlemmerListBox" HorizontalAlignment="Left" Height="386" Margin="10,0,0,0" VerticalAlignment="Center" Width="382" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="MedlemmerListBox_SelectionChanged" FontSize="14"/>
+                        <TextBox x:Name="MedlemNavnTextBox" HorizontalAlignment="Left" Height="26" Margin="402,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="382" FontSize="16" TextAlignment="Right" IsHitTestVisible="False"/>
+                        <TextBox x:Name="MedlemAlderTextBox" HorizontalAlignment="Left" Height="26" Margin="402,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="382" FontSize="16" TextAlignment="Right" IsHitTestVisible="False" Background="#FFEAECF1"/>
+                        <TextBox x:Name="MedlemBrugernavnTextBox" HorizontalAlignment="Left" Height="26" Margin="402,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="382" FontSize="16" TextAlignment="Right" IsHitTestVisible="False"/>
+                        <TextBox x:Name="MedlemAdgangskodeTextBox" HorizontalAlignment="Left" Height="26" Margin="402,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="382" FontSize="16" TextAlignment="Right" IsHitTestVisible="False" Background="#FFEAECF1"/>
+                        <TextBox x:Name="MedlemMedlemskabTextBox" HorizontalAlignment="Left" Height="26" Margin="402,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="382" FontSize="16" TextAlignment="Right" IsHitTestVisible="False"/>
+                        <TextBlock HorizontalAlignment="Left" Height="26" Margin="402,10,0,0" TextWrapping="Wrap" Text=" Fulde navn" VerticalAlignment="Top" Width="191" FontSize="14"/>
+                        <TextBlock HorizontalAlignment="Left" Height="26" Margin="402,36,0,0" TextWrapping="Wrap" Text=" Alder" VerticalAlignment="Top" Width="191" FontSize="14"/>
+                        <TextBlock HorizontalAlignment="Left" Height="26" Margin="402,62,0,0" TextWrapping="Wrap" Text=" Brugernavn" VerticalAlignment="Top" Width="191" FontSize="14"/>
+                        <TextBlock HorizontalAlignment="Left" Height="26" Margin="402,88,0,0" TextWrapping="Wrap" Text=" Adgangskode" VerticalAlignment="Top" Width="191" FontSize="14"/>
+                        <TextBlock HorizontalAlignment="Left" Height="26" Margin="402,114,0,0" TextWrapping="Wrap" Text=" Medlemskab" VerticalAlignment="Top" Width="191" FontSize="14"/>
+                        <Separator HorizontalAlignment="Left" Height="143" Margin="432,3,0,0" VerticalAlignment="Top" Width="130" RenderTransformOrigin="0.5,0.5">
+                            <Separator.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Separator.RenderTransform>
+                        </Separator>
                     </Grid>
                 </TabItem>
             </TabControl>
