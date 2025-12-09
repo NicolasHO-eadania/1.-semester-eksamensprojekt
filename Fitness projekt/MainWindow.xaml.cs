@@ -128,7 +128,7 @@ namespace Fitness_projekt
             AktivitetTitelTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].titel;
             AktivitetBeskrivelseTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].beskrivelse;
             AktivitetDatoDatePicker.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].dato;
-            AktivitetMaxDeltagereTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].maxDeltagere.ToString();
+            AktivitetMaxDeltagereTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].deltagere.liste.Count + " / " + aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].maxDeltagere.ToString();
 
             AktivitetDeltagereListBox.Items.Clear();
             if (aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].deltagere.liste.Count > 0)
