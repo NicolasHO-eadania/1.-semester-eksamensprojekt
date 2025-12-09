@@ -106,6 +106,7 @@ namespace Fitness_projekt
         private void NyAktivitetButton_Click(object sender, RoutedEventArgs e)
         {
             opretterAktivitet = true;
+            NyAktivitetButton.IsHitTestVisible = false;
 
             AktivitetTitelTextBox.Clear();
             AktivitetBeskrivelseTextBox.Clear();
@@ -116,8 +117,8 @@ namespace Fitness_projekt
             AktivitetTitelTextBox.IsHitTestVisible = true;
             AktivitetBeskrivelseTextBox.IsHitTestVisible = true;
             AktivitetDatoDatePicker.IsHitTestVisible = true;
-            GemAktivitetButton.IsHitTestVisible = true;
             AktivitetMaxDeltagereTextBox.IsHitTestVisible = true;
+
 
             RedigerAktivitetButton.IsHitTestVisible = false;
             SletAktivitetButton.IsHitTestVisible = false;
@@ -125,18 +126,27 @@ namespace Fitness_projekt
 
         private void AktiviteterListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            AktivitetTitelTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].titel;
-            AktivitetBeskrivelseTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].beskrivelse;
-            AktivitetDatoDatePicker.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].dato;
-            AktivitetMaxDeltagereTextBox.Text = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].deltagere.liste.Count + " / " + aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].maxDeltagere.ToString();
+            if (AktiviteterListBox.SelectedIndex < 0 || AktiviteterListBox.SelectedIndex >= aktivitetsliste.liste.Count)
+            {
+                RedigerAktivitetButton.IsHitTestVisible = false;
+                SletAktivitetButton.IsHitTestVisible = false;
+                return;
+            }
+
+            Aktivitet valgt = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex];
+
+            AktivitetTitelTextBox.Text = valgt.titel;
+            AktivitetBeskrivelseTextBox.Text = valgt.beskrivelse;
+            AktivitetDatoDatePicker.Text = valgt.dato;
+            AktivitetMaxDeltagereTextBox.Text = valgt.deltagere.liste.Count + " / " + valgt.maxDeltagere.ToString();
 
             AktivitetDeltagereListBox.Items.Clear();
-            if (aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].deltagere.liste.Count > 0)
+            if (valgt.deltagere.liste.Count > 0)
             {
                 int i = 0;
-                while (i < aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].deltagere.liste.Count)
+                while (i < valgt.deltagere.liste.Count)
                 {
-                    Medlem medlem = aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].deltagere.liste[i];
+                    Medlem medlem = valgt.deltagere.liste[i];
                     AktivitetDeltagereListBox.Items.Add(medlem.fornavn + " " + medlem.efternavn + " (" + medlem.brugernavn + ")");
                     i++;
                 }
@@ -155,7 +165,6 @@ namespace Fitness_projekt
             AktivitetTitelTextBox.IsHitTestVisible = true;
             AktivitetBeskrivelseTextBox.IsHitTestVisible = true;
             AktivitetDatoDatePicker.IsHitTestVisible = true;
-            AktivitetMaxDeltagereTextBox.IsHitTestVisible = true;
 
             RedigerAktivitetButton.IsHitTestVisible = false;
             SletAktivitetButton.IsHitTestVisible = false;
@@ -165,17 +174,18 @@ namespace Fitness_projekt
 
         private void GemAktivitetButton_Click(object sender, RoutedEventArgs e)
         {
-            int maxDeltagere = 999;
-            if (!string.IsNullOrEmpty(AktivitetMaxDeltagereTextBox.Text))
-            {
-                if (!int.TryParse(AktivitetMaxDeltagereTextBox.Text, out int maxDeltagereAendret))
-                {
-                    return;
-                }
-                maxDeltagere = maxDeltagereAendret;
-            }
             if (opretterAktivitet == true)
             {
+                int maxDeltagere = 999;
+                if (!string.IsNullOrEmpty(AktivitetMaxDeltagereTextBox.Text))
+                {
+                    if (!int.TryParse(AktivitetMaxDeltagereTextBox.Text, out int maxDeltagereAendret))
+                    {
+                        return;
+                    }
+                    maxDeltagere = maxDeltagereAendret;
+                }
+
                 Aktivitet nyAktivitet = new Aktivitet(AktivitetTitelTextBox.Text, AktivitetBeskrivelseTextBox.Text, AktivitetDatoDatePicker.Text, maxDeltagere);
                 aktivitetsliste.liste.Add(nyAktivitet);
 
@@ -189,7 +199,6 @@ namespace Fitness_projekt
                 aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].titel = AktivitetTitelTextBox.Text;
                 aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].beskrivelse = AktivitetBeskrivelseTextBox.Text;
                 aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].dato = AktivitetDatoDatePicker.Text;
-                aktivitetsliste.liste[AktiviteterListBox.SelectedIndex].maxDeltagere = maxDeltagere;
 
                 AktiviteterListBox.Items[AktiviteterListBox.SelectedIndex] = AktivitetTitelTextBox.Text + "     -     " + AktivitetDatoDatePicker.Text;
             }
@@ -222,6 +231,7 @@ namespace Fitness_projekt
                 AktivitetBeskrivelseTextBox.Clear();
                 AktivitetDatoDatePicker.SelectedDate = null;
                 AktivitetMaxDeltagereTextBox.Clear();
+                AktivitetDeltagereListBox.Items.Clear();
 
                 SletAktivitetButton.IsHitTestVisible = false;
             }
@@ -229,13 +239,40 @@ namespace Fitness_projekt
 
         private void AktivitetTitelTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(AktivitetTitelTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetBeskrivelseTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetDatoDatePicker.Text))
+            {
+                GemAktivitetButton.IsHitTestVisible = true;
+            }
+            else
+            {
+                GemAktivitetButton.IsHitTestVisible = false;
+            }
         }
 
         private void AktivitetBeskrivelseTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(AktivitetBeskrivelseTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetTitelTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetDatoDatePicker.Text))
+            {
+                GemAktivitetButton.IsHitTestVisible = true;
+            }
+            else
+            {
+                GemAktivitetButton.IsHitTestVisible = false;
+            }
         }
+
+        private void AktivitetDatoDatePicker_CalendarClosed(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(AktivitetBeskrivelseTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetTitelTextBox.Text) && !string.IsNullOrWhiteSpace(AktivitetDatoDatePicker.Text))
+            {
+                GemAktivitetButton.IsHitTestVisible = true;
+            }
+            else
+            {
+                GemAktivitetButton.IsHitTestVisible = false;
+            }
+        }
+
 
         private void NyAktivitetButton_IsHitTestVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -285,9 +322,16 @@ namespace Fitness_projekt
             }
         }
 
+
+
+        //---------------------------------------------------------------------------------------
+
+
+
         private void MedlemmerListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
     }
 }
