@@ -18,6 +18,9 @@ namespace Fitness_projekt
     /// </summary>
     public partial class LoginWindow : Window
     {
+
+        //--------------------forkert brugernavn eller adgangskode--------------------
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -27,10 +30,10 @@ namespace Fitness_projekt
 
         private void LogIndButton_Click(object sender, RoutedEventArgs e)
         {
-            string brugernavn = BrugernavnTextBox.Text;
-            string adgangskode = AdgangskodeTextBox.Text;
+            string inputBrugernavn = BrugernavnTextBox.Text;
+            string inputAdgangskode = AdgangskodeTextBox.Text;
 
-            if(brugernavn == administrator.brugernavn && adgangskode == administrator.adgangskode)
+            if(inputBrugernavn == administrator.brugernavn && inputAdgangskode == administrator.adgangskode)
             {
                 MainWindow AdministratorWindow = new MainWindow();
                 AdministratorWindow.Show();
@@ -43,9 +46,9 @@ namespace Fitness_projekt
             while (i < FilLines.Length)
             {
                 string[] MedlemVariabler = FilLines[i].Split(";");
-                if (brugernavn == MedlemVariabler[3] && adgangskode == MedlemVariabler[4])
+                if (inputBrugernavn == MedlemVariabler[3] && inputAdgangskode == MedlemVariabler[4])
                 {
-                    MedlemWindow medlemWindow = new MedlemWindow(brugernavn, adgangskode);
+                    MedlemWindow medlemWindow = new MedlemWindow(inputBrugernavn, inputAdgangskode);
                     medlemWindow.Show();
                     Close();
                     return;

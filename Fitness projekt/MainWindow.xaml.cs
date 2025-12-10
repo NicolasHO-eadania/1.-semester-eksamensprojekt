@@ -45,7 +45,7 @@ namespace Fitness_projekt
                 int alder = Convert.ToInt32(MedlemVariabler[2]);
                 Medlem medlem = new Medlem(MedlemVariabler[0], MedlemVariabler[1], alder, MedlemVariabler[3], MedlemVariabler[4], MedlemVariabler[5]);
                 medlemsliste.liste.Add(medlem);
-                MedlemmerListBox.Items.Add(MedlemVariabler[0] + " " + MedlemVariabler[1]);
+                MedlemmerListBox.Items.Add(medlem.fornavn + " " + medlem.efternavn);
                 i++;
             }
         }
@@ -64,7 +64,7 @@ namespace Fitness_projekt
                 TilføjDeltagere(aktivitet, AktivitetVariabler);
 
                 aktivitetsliste.liste.Add(aktivitet);
-                AktiviteterListBox.Items.Add(AktivitetVariabler[0] + "     -     " + AktivitetVariabler[2]);
+                AktiviteterListBox.Items.Add(aktivitet.titel + "     -     " + aktivitet.dato);
                 i++;
             }
         }

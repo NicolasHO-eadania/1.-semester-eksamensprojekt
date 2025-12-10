@@ -50,6 +50,12 @@ namespace Fitness_projekt
             this.dato = dato;
             this.maxDeltagere = maxDeltagere;
         }
+        
+        //GitHub copilot
+        public override string ToString()
+        {
+            return $"{titel} - {dato}";
+        }
     }
     public class Aktivitetsliste
     {
