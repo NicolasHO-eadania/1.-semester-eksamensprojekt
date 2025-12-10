@@ -55,7 +55,7 @@ namespace Fitness_projekt
                 }
                 i++;
             }
-
+            MessageBox.Show("Forkert brugernavn eller adgangskode", "Fejl", MessageBoxButton.OK);
         }
     }
 }
