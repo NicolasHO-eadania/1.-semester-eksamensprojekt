@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Fitness_projekt
 {
+    // alle klasser som set på klasse diagrammet - de er i en seperat fil så alle vinduer kan tilgå dem
     public class Medlem
     {
         public string fornavn;
@@ -23,6 +24,7 @@ namespace Fitness_projekt
             this.medlemskab = medlemskab;
         }
     }
+
     public class Administrator
     {
         public string brugernavn;
@@ -34,6 +36,7 @@ namespace Fitness_projekt
             this.adgangskode = adgangskode;
         }
     }
+
     public class Aktivitet
     {
         public string titel;
@@ -50,21 +53,24 @@ namespace Fitness_projekt
             this.dato = dato;
             this.maxDeltagere = maxDeltagere;
         }
-        
-        //GitHub copilot
+
+        // jeg har fået hjælp fra Github Copilot til at lave en override metode (se bilag)
         public override string ToString()
         {
             return $"{titel} - {dato}";
         }
     }
+
     public class Aktivitetsliste
     {
         public List<Aktivitet> liste = new List<Aktivitet>();
     }
+
     public class Medlemsliste
     {
         public List<Medlem> liste = new List<Medlem>();
     }
+
     public class Deltagerliste
     {
         public List<Medlem> liste = new List<Medlem>();
