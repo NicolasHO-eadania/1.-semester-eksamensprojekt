@@ -41,9 +41,9 @@ namespace Fitness_projekt
             int i = 0;
             while(i < filLines.Length)
             {
-                string[] MedlemVariabler = filLines[i].Split(";");
-                int alder = Convert.ToInt32(MedlemVariabler[2]);
-                Medlem medlem = new Medlem(MedlemVariabler[0], MedlemVariabler[1], alder, MedlemVariabler[3], MedlemVariabler[4], MedlemVariabler[5]);
+                string[] medlemVariabler = filLines[i].Split(";");
+                int alder = Convert.ToInt32(medlemVariabler[2]);
+                Medlem medlem = new Medlem(medlemVariabler[0], medlemVariabler[1], alder, medlemVariabler[3], medlemVariabler[4], medlemVariabler[5]);
                 medlemsliste.liste.Add(medlem);
                 MedlemmerListBox.Items.Add(medlem.fornavn + " " + medlem.efternavn);
                 i++;
@@ -52,16 +52,16 @@ namespace Fitness_projekt
 
         void LæsAktiviteterFil()
         {
-            string[] FilLines = System.IO.File.ReadAllLines(@"AktiviteterFil.txt");
+            string[] filLines = System.IO.File.ReadAllLines(@"AktiviteterFil.txt");
 
             int i = 0;
-            while (i < FilLines.Length)
+            while (i < filLines.Length)
             {
-                string[] AktivitetVariabler = FilLines[i].Split(";");
-                int maxDeltagere = Convert.ToInt32(AktivitetVariabler[3]);
-                Aktivitet aktivitet = new Aktivitet(AktivitetVariabler[0], AktivitetVariabler[1], AktivitetVariabler[2], maxDeltagere);
+                string[] aktivitetVariabler = filLines[i].Split(";");
+                int maxDeltagere = Convert.ToInt32(aktivitetVariabler[3]);
+                Aktivitet aktivitet = new Aktivitet(aktivitetVariabler[0], aktivitetVariabler[1], aktivitetVariabler[2], maxDeltagere);
 
-                TilføjDeltagere(aktivitet, AktivitetVariabler);
+                TilføjDeltagere(aktivitet, aktivitetVariabler);
 
                 aktivitetsliste.liste.Add(aktivitet);
                 AktiviteterListBox.Items.Add(aktivitet.titel + "     -     " + aktivitet.dato);
@@ -97,7 +97,7 @@ namespace Fitness_projekt
         // hjælp fra GitHub Copilot
         void GemAktiviteterFil()
         {
-            List<string> FilLines = new List<string>();
+            List<string> filLines = new List<string>();
             int i = 0;
             while (i < aktivitetsliste.liste.Count)
             {
@@ -117,11 +117,11 @@ namespace Fitness_projekt
                     j++;
                 }
 
-                FilLines.Add(string.Join(";", dele));
+                filLines.Add(string.Join(";", dele));
                 i++;
             }
 
-            File.WriteAllLines(@"AktiviteterFil.txt", FilLines);
+            File.WriteAllLines(@"AktiviteterFil.txt", filLines);
         }
 
 

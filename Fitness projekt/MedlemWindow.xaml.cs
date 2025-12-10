@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,7 +18,7 @@ namespace Fitness_projekt
     /// </summary>
     public partial class MedlemWindow : Window
     {
-        // --------- Validering ---------- Gem i fil -------- maks deltagere
+        // --------- Validering ---------- maks deltagere
         
         
         
@@ -27,16 +28,6 @@ namespace Fitness_projekt
         private readonly string inputBrugernavn;
         private readonly string inputAdgangskode;
 
-        public MedlemWindow(string inputBrugernavn, string inputAdgangskode)
-        {
-            InitializeComponent();
-
-            this.inputBrugernavn = inputBrugernavn;
-            this.inputAdgangskode = inputAdgangskode;
-
-            LæsMedlemmerFil();
-            LæsAktiviteterFil();
-        }
 
         void LæsMedlemmerFil()
         {
@@ -45,9 +36,9 @@ namespace Fitness_projekt
             int i = 0;
             while (i < filLines.Length)
             {
-                string[] MedlemVariabler = filLines[i].Split(";");
-                int alder = Convert.ToInt32(MedlemVariabler[2]);
-                Medlem medlem = new Medlem(MedlemVariabler[0], MedlemVariabler[1], alder, MedlemVariabler[3], MedlemVariabler[4], MedlemVariabler[5]);
+                string[] medlemVariabler = filLines[i].Split(";");
+                int alder = Convert.ToInt32(medlemVariabler[2]);
+                Medlem medlem = new Medlem(medlemVariabler[0], medlemVariabler[1], alder, medlemVariabler[3], medlemVariabler[4], medlemVariabler[5]);
                 medlemsliste.liste.Add(medlem);
                 i++;
             }
@@ -92,6 +83,37 @@ namespace Fitness_projekt
             }
         }
 
+
+        void GemAktiviteterFil()
+        {
+            List<string> filLines = new List<string>();
+            int i = 0;
+            while (i < aktivitetsliste.liste.Count)
+            {
+                Aktivitet aktivitet = aktivitetsliste.liste[i];
+
+                List<string> dele = new List<string>();
+                dele.Add(aktivitet.titel);
+                dele.Add(aktivitet.beskrivelse);
+                dele.Add(aktivitet.dato);
+                dele.Add(aktivitet.maxDeltagere.ToString());
+
+                int j = 0;
+                while (j < aktivitet.deltagere.liste.Count)
+                {
+                    Medlem medlem = aktivitet.deltagere.liste[j];
+                    dele.Add(medlem.brugernavn);
+                    j++;
+                }
+
+                filLines.Add(string.Join(";", dele));
+                i++;
+            }
+
+            File.WriteAllLines(@"AktiviteterFil.txt", filLines);
+        }
+
+
         void TilføjDeltagere(Aktivitet aktivitet, string[] aktivitetVariabler)
         {
             int j = 4;
@@ -113,6 +135,28 @@ namespace Fitness_projekt
                 j++;
             }
         }
+
+
+
+
+
+        public MedlemWindow(string inputBrugernavn, string inputAdgangskode)
+        {
+            InitializeComponent();
+
+            this.inputBrugernavn = inputBrugernavn;
+            this.inputAdgangskode = inputAdgangskode;
+
+            LæsMedlemmerFil();
+            LæsAktiviteterFil();
+        }
+
+
+
+
+
+
+
 
 
         private void MineAktiviteterListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -215,13 +259,40 @@ namespace Fitness_projekt
             // tilføj bruger til deltagere listbox
             AktivitetDeltagereListBox.Items.Add(bruger.fornavn + " " + bruger.efternavn);
 
-            ForladButton.IsHitTestVisible = true;
+            ForladButton.IsHitTestVisible = false;
             DeltagButton.IsHitTestVisible = false;
+
+            GemAktiviteterFil();
         }
 
         private void ForladButton_Click(object sender, RoutedEventArgs e)
         {
+            Aktivitet valgt = MineAktiviteterListBox.SelectedItem as Aktivitet;
 
+            // finder brugeren, som er logget ind, i medlemsliste
+            Medlem bruger = null;
+            int i = 0;
+            while (i < medlemsliste.liste.Count)
+            {
+                if (medlemsliste.liste[i].brugernavn == inputBrugernavn)
+                {
+                    bruger = medlemsliste.liste[i];
+                    break;
+                }
+                i++;
+            }
+
+            valgt.deltagere.liste.Remove(bruger);
+
+            // flyt aktivitet til den anden listbox
+            MineAktiviteterListBox.Items.Remove(valgt);
+            AlleAktiviteterListBox.Items.Add(valgt);
+
+
+            ForladButton.IsHitTestVisible = false;
+            DeltagButton.IsHitTestVisible = false;
+
+            GemAktiviteterFil();
         }
 
         private void DeltagButton_IsHitTestVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
