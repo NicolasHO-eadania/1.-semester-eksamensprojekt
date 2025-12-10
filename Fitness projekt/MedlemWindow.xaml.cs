@@ -182,7 +182,41 @@ namespace Fitness_projekt
 
         private void DeltagButton_Click(object sender, RoutedEventArgs e)
         {
+            Aktivitet valgt = AlleAktiviteterListBox.SelectedItem as Aktivitet;
 
+            // finder brugeren, som er logget ind, i medlemsliste
+            Medlem bruger = null;
+            int i = 0;
+            while (i < medlemsliste.liste.Count)
+            {
+                if (medlemsliste.liste[i].brugernavn == inputBrugernavn)
+                {
+                    bruger = medlemsliste.liste[i];
+                    break;
+                }
+                i++;
+            }
+
+            // tjekker om aktiviteten er fuld
+            if (valgt.deltagere.liste.Count >= valgt.maxDeltagere)
+            {
+                //viser en fejlmeddelelse
+                MessageBox.Show("Aktiviteten er fuld", "Fejl", MessageBoxButton.OK);
+                return;
+            }
+
+            // tilføj bruger til aktivitetens deltagerliste
+            valgt.deltagere.liste.Add(bruger);
+
+            // flyt aktivitet til den anden listbox
+            AlleAktiviteterListBox.Items.Remove(valgt);
+            MineAktiviteterListBox.Items.Add(valgt);
+
+            // tilføj bruger til deltagere listbox
+            AktivitetDeltagereListBox.Items.Add(bruger.fornavn + " " + bruger.efternavn);
+
+            ForladButton.IsHitTestVisible = true;
+            DeltagButton.IsHitTestVisible = false;
         }
 
         private void ForladButton_Click(object sender, RoutedEventArgs e)
